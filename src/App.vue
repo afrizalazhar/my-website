@@ -4,7 +4,7 @@ import './assets/main.css'
 
 <template>
 <div class="h-screen bg-slate-100">
-  <div class="flex flex-col max-w-sm h-full bg-red-100 mx-auto">
+  <div class="flex flex-col lg:max-w-sm md:max-w-sm sm:w-full h-full bg-red-100 mx-auto">
     <div class="h-12 w-full p-2 flex bg-red-400">
       <div class="flex items-center">
         <img class="w-8 h-8 object-fit rounded-full mr-2" src="https://images.unsplash.com/photo-1463288889890-a56b2853c40f?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=3132&amp;q=80">
@@ -12,8 +12,11 @@ import './assets/main.css'
       </div>
     </div>
     <div class="mb-auto flex flex-col flex-nowrap items-start p-2">
-      <div v-for="chat of chat_values" :key="chat" class="bg-white py-1 px-3 rounded-full mb-1">
+      <div v-for="chat of chat_render" :key="chat" class="bg-white py-1 px-3 rounded-lg mb-1 mr-12">
         <span class="text-sm">{{chat}}</span>
+      </div>
+      <div v-if="!finish" class="bg-white py-1 px-3 rounded-lg mb-1 mr-12">
+        <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader>
       </div>
     </div>
     <div class="h-12 w-auto py-2 px-3 flex bg-white rounded-lg m-2 items-center">
@@ -24,14 +27,42 @@ import './assets/main.css'
 </div>
 </template>
 <script>
+
 export default {
   data() {
     return {
+      chat_render: [],
       chat_values: [
         "Hello there,",
-        "Izal here.",
-        "How you doin ? 😎"
-        ]
+        "Afrizal Azhar here.",
+        "I’m a Fullstack Software Developer",
+        "Currently focusing on Mobile Application Development",
+        "Fyi, i’m open to freelance opportunity. You can contact me on list down below. ⬇️⬇️⬇️",
+        "So, What can i do for you?"
+        ],
+      finish: false,
+      color: '#e5e5e5',
+      size: '5px',
+      loading: true
+    }
+  },
+  mounted() {
+    this.renderChat()
+  },
+  methods: {
+    renderChat() {
+      let scope = this
+      const chat_to_it = this.chat_values[Symbol.iterator]()
+      let timeout = setInterval(()=>{
+        const next = chat_to_it.next()
+        if(!next.done) {
+          scope.chat_render.push(next.value)
+          loadingTo
+        } else {
+          scope.finish = true
+          clearInterval(timeout)
+        }
+      }, 1500)
     }
   }
 }
