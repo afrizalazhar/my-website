@@ -6,17 +6,20 @@ import './assets/main.css'
 <div class="h-screen bg-slate-100">
   <div class="flex flex-col lg:max-w-sm md:max-w-sm sm:w-full h-full bg-white mx-auto">
     <div class="h-15 w-full p-2 flex bg-red-400">
-      <div class="flex items-center">
-        <img class="w-8 h-8 object-fit rounded-full mr-2" src="https://images.unsplash.com/photo-1463288889890-a56b2853c40f?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=3132&amp;q=80">
-        <div class="flex flex-col">
-        <h1 class="text-white bold">Afrizal Azhar</h1>
-        <span class="text-sm text-red-300">Software Developer</span>
+      <div class="flex flex-row items-center w-full">
+        <img class="flex-none w-8 h-8 object-fit rounded-full mr-2" src="https://avatars.githubusercontent.com/u/27803967?v=4">
+        <div class="grow w-64 flex flex-col">
+          <h1 class="text-white bold">Afrizal Azhar</h1>
+          <span class="text-sm text-red-300">Software Developer</span>
+        </div>
+        <div class="grid flex-none w-8 text-white">
+          <i class="justify-self-center fa fa-ellipsis-vertical"></i>
         </div>
       </div>
     </div>
     <div class="mb-auto flex flex-col flex-nowrap items-start p-2">
       <div v-for="chat of chat_render" :key="chat" class="bg-slate-200 py-1 px-3 rounded-lg mb-1 mr-12">
-        <span class="text-sm">{{chat}}</span>
+        <span v-html="chat" class="text-sm"></span>
       </div>
       <div v-if="!finish" class="bg-slate-200 py-1 px-3 rounded-lg mb-1 mr-12">
         <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader>
@@ -43,7 +46,11 @@ export default {
         "Afrizal Azhar here.",
         "I’m a Fullstack Software Developer",
         "Currently focusing on Mobile Application Development",
-        "Fyi, i’m open to freelance opportunity. You can contact me on list down below. ⬇️⬇️⬇️",
+        "You can contact me on the list down below. ⬇️⬇️⬇️",
+        "<i class='fa-brands fa-linkedin'></i> <a href='https://www.linkedin.com/in/afrizal-azhar-ash-shiddiq-0544ab137/' target='_' class='ml-2 italic text-blue-500'>Linkedin</a>",
+        "<i class='fa-brands fa-github'></i> <a href='https://github.com/afrizalazhar' target='_' class='ml-2 italic text-blue-500'>Github</a>",
+        "<i class='fa-brands fa-instagram'></i> <a href='#' target='_' class='ml-2 italic text-blue-500'>Instagram</a>",
+        "<i class='fa fa-envelope'></i> <a href='#' class='ml-2 italic text-blue-500'>Email</a>",
         "So, What can i do for you?"
         ],
       finish: false,
@@ -54,6 +61,7 @@ export default {
   },
   mounted() {
     this.renderChat()
+    // this.renderLoading()
   },
   methods: {
     renderChat() {
@@ -63,13 +71,24 @@ export default {
         const next = chat_to_it.next()
         if(!next.done) {
           scope.chat_render.push(next.value)
-          loadingTo
+          // scope.finish = true
         } else {
           scope.finish = true
           clearInterval(timeout)
         }
       }, 1500)
-    }
+    },
+    async renderLoading() {
+      // let run = async() => {
+          this.chat_values.map(function(values, key) {
+          this.finish = false
+          // await delay(1000)
+          this.chat_render.push(value)
+          this.finish = true
+        })
+      // }
+      // run()
+    },
   }
 }
 </script>
