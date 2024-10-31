@@ -2,12 +2,12 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import { createRouter, createWebHashHistory} from 'vue-router';
-import HomePage from './HomePage.vue';
 import ProfilePage from './ProfilePage.vue';
+import TebakTebakanPage from './TebakTebakanPage.vue';
 
 const routes = [
-    {path: '/', component: HomePage},
-    {path: '/profile', component: ProfilePage}
+    {path: '/', component: ProfilePage},
+    {path: '/tebak-tebakan', component: TebakTebakanPage},
 ]
 
 const router = createRouter({

@@ -24,15 +24,9 @@ import HeaderSection from './components/HeaderSection.vue'
             return {
                 chat_render: [],
                 chat_values: [
-                    "Hello there,",
-                    "I’m a Fullstack Software Developer",
-                    "Currently focusing on Mobile Application Development",
-                    "Click my profile for more detail about me.",
-                    "Or you can contact me directly on the list down below. ⬇️⬇️⬇️",
-                    "<i class='fa-brands fa-linkedin'></i> <a href='https://www.linkedin.com/in/afrizal-azhar-ash-shiddiq-0544ab137/' target='_' class='ml-2 italic text-blue-500'>Linkedin</a><br/>" +
-                    "<i class='fa-brands fa-github'></i> <a href='https://github.com/afrizalazhar' target='_' class='ml-2 italic text-blue-500'>Github</a><br/>" +
-                    "<i class='fa-brands fa-instagram'></i> <a href='#' target='_' class='ml-2 italic text-blue-500'>Instagram</a><br/>" +
-                    "<i class='fa fa-envelope'></i> <a href='#' class='ml-2 italic text-blue-500'>Email</a>"
+                    "Hi, im afrizal's virtul asistant, i will give you information about Afrizal.",
+                    "What information you want to know ?",
+                    "You can text me like \"How old Afrizal?\""
                 ],
                 finish: false,
                 color: '#ffffff',
@@ -57,7 +51,7 @@ import HeaderSection from './components/HeaderSection.vue'
                         scope.finish = true
                         clearInterval(timeout)
                     }
-                }, 500)
+                }, 1000)
             },
             async renderLoading() {
                 // let run = async() => {
